@@ -3,30 +3,30 @@ npm i express nodemon ejs multel aws-sdk
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 2. init app
-const express = require('express');
-const app = express();
-const multer = require('multer');
-const upload = multer();
+    const express = require('express');
+    const app = express();
+    const multer = require('multer');
+    const upload = multer();
 
-app.use(express.json({ extended: false }));
-app.use(express.static('./views'));
-app.set('view engine', 'ejs');
-app.set('views', './views');
+    app.use(express.json({ extended: false }));
+    app.use(express.static('./views'));
+    app.set('view engine', 'ejs');
+    app.set('views', './views');
 
-//config aws dynamodb
-const AWS = require('aws-sdk');
-const config = new AWS.Config({
+    //config aws dynamodb
+    const AWS = require('aws-sdk');
+    const config = new AWS.Config({
     accessKeyId: 'AKIAQEPX75ALKG3AV2VJ',
     secretAccessKey: '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',
     region: 'us-west-1'
-});
-AWS.config = config;
+    });
+    AWS.config = config;
 
-const docClinet = new AWS.DynamoDB.DocumentClient();
+    const docClinet = new AWS.DynamoDB.DocumentClient();
 
-const tableName = 'SanPham';
+    const tableName = 'SanPham';
 3. Lấy dữ liệu lên 
-app.get('/', (request, response) => {
+    app.get('/', (request, response) => {
     const params = {
         TableName: tableName,
     };
